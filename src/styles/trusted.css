@@ -1,0 +1,365 @@
+/* src/styles/trusted.css */
+
+/* ==========================================================
+   TRUSTED BY SECTION (INFINITE LEFT → RIGHT BRAND MARQUEE)
+   ========================================================== */
+.trusted-by {
+  padding: 18px 0 24px;
+  background-color: var(--black);
+  color: var(--cream);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.trusted-label {
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #8C99AE;
+  margin-bottom: 14px;
+  padding: 0 24px;
+}
+
+/* ==========================================================
+   MARQUEE CONTAINER
+   ========================================================== */
+.trusted-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  padding: 16px 0;
+  /* Soft edge fade */
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.trusted-marquee__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  padding: 10px 0;
+  will-change: transform;
+  /* Continuous smooth LEFT → RIGHT infinite movement */
+  animation: marquee-ltr 50s linear infinite;
+}
+
+/* Pause on hover */
+.trusted-marquee:hover .trusted-marquee__track {
+  animation-play-state: paused;
+}
+
+/* Group containing 2 sets (Half of total track) */
+.trusted-marquee__half {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 0;
+}
+
+/* ==========================================================
+   BRAND ITEM (Liquid Glass Badge)
+   ========================================================== */
+.brand-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 12px;
+  padding: 11px 24px;
+  border-radius: var(--radius-full, 999px);
+  background: rgba(255, 253, 248, 0.04);
+  border: 1px solid rgba(255, 253, 248, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 
+    0 8px 24px -4px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+  transform-origin: center center;
+  will-change: transform;
+  transition: 
+    background-color 0.28s ease, 
+    border-color 0.28s ease, 
+    box-shadow 0.28s ease, 
+    transform 0.28s cubic-bezier(0.2, 0.85, 0.25, 1);
+  color: var(--off-white, #FFFDF8);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-item:hover {
+  background: rgba(16, 54, 125, 0.35);
+  border-color: rgba(116, 180, 217, 0.6);
+  box-shadow: 
+    0 16px 36px -4px rgba(16, 54, 125, 0.5),
+    0 0 20px rgba(116, 180, 217, 0.3),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.12);
+  color: #FFFFFF;
+  z-index: 10;
+}
+
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-blue, #74B4D9);
+  transition: color 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.brand-item:hover .brand-icon {
+  color: var(--gold, #FFDB98);
+  transform: scale(1.12);
+}
+
+/* Mahindra Electric official white logo */
+.brand-icon--mahindra,
+.brand-icon--mahindra path {
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+.brand-item:hover .brand-icon--mahindra,
+.brand-item:hover .brand-icon--mahindra path {
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+/* GMR official tricolor logo */
+.brand-icon--gmr .gmr-blue {
+  fill: #1D68C7 !important;
+  transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.brand-icon--gmr .gmr-red {
+  fill: #ED1C24 !important;
+  transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.brand-icon--gmr .gmr-orange {
+  fill: #FAAB53 !important;
+  transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.brand-item:hover .brand-icon--gmr .gmr-blue {
+  fill: #3B86E8 !important;
+  filter: drop-shadow(0 0 6px rgba(29, 104, 199, 0.7));
+}
+
+.brand-item:hover .brand-icon--gmr .gmr-red {
+  fill: #FF2B34 !important;
+  filter: drop-shadow(0 0 6px rgba(237, 28, 36, 0.7));
+}
+
+.brand-item:hover .brand-icon--gmr .gmr-orange {
+  fill: #FFBD6C !important;
+  filter: drop-shadow(0 0 6px rgba(250, 171, 83, 0.7));
+}
+
+/* Philips official blue logo */
+.brand-icon--philips,
+.brand-icon--philips path {
+  fill: #0065D3 !important;
+  transition: filter 0.3s ease, fill 0.3s ease;
+}
+
+.brand-item:hover .brand-icon--philips,
+.brand-item:hover .brand-icon--philips path {
+  fill: #1A7BFF !important;
+  filter: drop-shadow(0 0 8px rgba(0, 101, 211, 0.7));
+}
+
+/* Wobble official white logo */
+.brand-icon--wobble,
+.brand-icon--wobble path {
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+  transition: filter 0.3s ease;
+}
+
+.brand-item:hover .brand-icon--wobble,
+.brand-item:hover .brand-icon--wobble path {
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+/* TRESemmé official black and gold badge */
+.brand-icon--tresemme {
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-item:hover .brand-icon--tresemme {
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.65), 0 0 18px rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+/* Nivea official circular blue logo */
+.brand-icon--nivea circle {
+  fill: #0032A0 !important;
+  transition: filter 0.3s ease, fill 0.3s ease;
+}
+
+.brand-icon--nivea path {
+  fill: #FFFFFF !important;
+}
+
+.brand-item:hover .brand-icon--nivea circle {
+  fill: #0043D6 !important;
+  filter: drop-shadow(0 0 8px rgba(0, 50, 160, 0.65));
+}
+
+.brand-item:hover .brand-icon--nivea path {
+  fill: #FFFFFF !important;
+}
+
+/* ShineXpro official dual-tone X emblem */
+.brand-icon--shinexpro path:first-child {
+  fill: #D99B4B !important;
+  transition: filter 0.3s ease, fill 0.3s ease;
+}
+
+.brand-icon--shinexpro path:last-child {
+  fill: #FFFFFF !important;
+  transition: filter 0.3s ease;
+}
+
+.brand-item:hover .brand-icon--shinexpro path:first-child {
+  fill: #FFB356 !important;
+  filter: drop-shadow(0 0 6px rgba(217, 155, 75, 0.65));
+}
+
+.brand-item:hover .brand-icon--shinexpro path:last-child {
+  fill: #FFFFFF !important;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+/* Zarva official white monogram Z */
+.brand-icon--zarva path {
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+  transition: filter 0.3s ease;
+}
+
+.brand-item:hover .brand-icon--zarva path {
+  fill: #FFFFFF !important;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+/* TV9 official split blue/red badge */
+.brand-icon--tv9 {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-item:hover .brand-icon--tv9 {
+  box-shadow: 0 0 10px rgba(20, 80, 210, 0.6), 0 0 10px rgba(219, 0, 0, 0.6);
+  transform: scale(1.1);
+}
+
+.brand-item .brand-text {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+/* ==========================================================
+   KEYFRAME: LEFT TO RIGHT (-50% to 0)
+   ========================================================== */
+@keyframes marquee-ltr {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 900px) {
+  .trusted-by {
+    padding: 38px 0 48px;
+  }
+
+  .trusted-label {
+    margin-bottom: 28px;
+  }
+
+  .brand-item {
+    margin: 0 9px;
+    padding: 9px 18px;
+  }
+
+  .brand-text {
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+  }
+
+  .trusted-marquee__track {
+    animation-duration: 40s;
+  }
+}
+
+@media (max-width: 480px) {
+  .trusted-by {
+    padding: 32px 0 42px;
+  }
+
+  .trusted-label {
+    margin-bottom: 22px;
+    font-size: 10.5px;
+  }
+
+  .brand-item {
+    margin: 0 7px;
+    padding: 8px 15px;
+  }
+
+  .brand-text {
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+  }
+
+  .trusted-marquee__track {
+    animation-duration: 32s;
+  }
+}
+
+/* ==========================================================
+   PREFERS-REDUCED-MOTION
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .trusted-marquee__track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .trusted-marquee {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+

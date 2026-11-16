@@ -1,0 +1,163 @@
+/* src/styles/services-overview.css */
+
+/* ==========================================================
+   SERVICES OVERVIEW SECTION (DARK THEME)
+   Full-bleed, edge-to-edge section (no outer whitespace / corners)
+   ========================================================== */
+.services-overview,
+.sec.services-overview {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  border: none;
+  border-top: none;
+  outline: none;
+  border-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: none;
+  clip-path: none;
+  -webkit-clip-path: none;
+  background-color: var(--black);
+  color: var(--off-white);
+  position: relative;
+}
+
+.services-overview .services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+
+.service-card {
+  background: rgba(14, 15, 22, 0.88);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 253, 248, 0.1);
+  border-radius: var(--radius-card);
+  padding: 24px 28px;
+  box-shadow: 
+    0 16px 36px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s var(--ease-out-expo),
+              border-color 0.35s ease,
+              background-color 0.35s ease,
+              box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    360px circle at var(--glass-x, 50%) var(--glass-y, 50%),
+    rgba(116, 180, 217, 0.1) 0%,
+    rgba(255, 255, 255, 0.03) 30%,
+    transparent 65%
+  );
+  opacity: var(--glass-opacity, 0);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.service-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(16, 54, 125, 0.6), rgba(116, 180, 217, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 3;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  background: rgba(18, 20, 30, 0.94);
+  border-color: rgba(116, 180, 217, 0.35);
+  box-shadow: 
+    0 24px 50px -12px rgba(0, 0, 0, 0.65), 
+    0 0 20px rgba(16, 54, 125, 0.18),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card__num {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.service-card__title {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 1.5vw, 24px);
+  color: var(--off-white);
+  margin-bottom: 8px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.service-card__desc {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #C2BFB6;
+  font-weight: 350;
+  margin-top: auto;
+}
+
+.services-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 1024px), (max-width: 900px), (max-width: 768px), (max-width: 480px) {
+  .services-overview,
+  .sec.services-overview {
+    border-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .services-overview .services-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .service-card {
+    padding: 32px 24px;
+  }
+}

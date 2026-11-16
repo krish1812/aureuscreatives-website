@@ -1,0 +1,442 @@
+/* src/styles/sections.css */
+
+/* ==========================================================
+   SECTION ARCHITECTURE & RHYTHM
+   ========================================================== */
+.sec,
+.section {
+  position: relative;
+  width: 100%;
+  padding: clamp(48px, 5.5vh, 68px) 48px;
+  border-top-left-radius: var(--radius-section);
+  border-top-right-radius: var(--radius-section);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* First section on page has flat top corners */
+.sec:first-of-type,
+.section:first-of-type,
+.sec.services-overview {
+  border-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Selected Work and Testimonials have matching curved bottom corners */
+.sec.selected-work,
+.sec.testimonials {
+  border-bottom-left-radius: var(--radius-section);
+  border-bottom-right-radius: var(--radius-section);
+}
+
+/* Consecutive sections with identical themes should not have rounded corners (eliminates corner notches) */
+.sec--dark + .sec--dark,
+.theme-dark + .theme-dark,
+.sec--light + .sec--light,
+.theme-light + .theme-light {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/* Subpage Main Page Wrappers (Pure Black Canvas) */
+main.work-page,
+main.about-page,
+main.for-brands-page,
+main.for-creators-page,
+main.contact-page {
+  background-color: var(--black);
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Global body background override on dark subpages */
+html:has(main.work-page),
+html:has(main.about-page),
+html:has(main.for-brands-page),
+html:has(main.for-creators-page),
+html:has(main.contact-page),
+body:has(main.work-page),
+body:has(main.about-page),
+body:has(main.for-brands-page),
+body:has(main.for-creators-page),
+body:has(main.contact-page) {
+  background-color: var(--black) !important;
+}
+
+/* Footer seamless dark connection on subpages ending in dark sections */
+body:has(main.work-page) .footer-wrap,
+body:has(main.about-page) .footer-wrap,
+body:has(main.for-brands-page) .footer-wrap,
+body:has(main.for-creators-page) .footer-wrap,
+body:has(main.contact-page) .footer-wrap,
+main.work-page ~ .footer-wrap,
+main.about-page ~ .footer-wrap,
+main.for-brands-page ~ .footer-wrap,
+main.for-creators-page ~ .footer-wrap,
+main.contact-page ~ .footer-wrap {
+  background-color: var(--black) !important;
+}
+
+body:has(main.work-page) .footer,
+body:has(main.about-page) .footer,
+body:has(main.for-brands-page) .footer,
+body:has(main.for-creators-page) .footer,
+body:has(main.contact-page) .footer,
+main.work-page ~ .footer-wrap .footer,
+main.about-page ~ .footer-wrap .footer,
+main.for-brands-page ~ .footer-wrap .footer,
+main.for-creators-page ~ .footer-wrap .footer,
+main.contact-page ~ .footer-wrap .footer {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/* Subpage Atmospheric Hero Background (Full-bleed, seamless blend matching Home Hero) */
+.subpage-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--black);
+  padding-top: calc(var(--nav-height) + clamp(20px, 3.5vw, 40px));
+  padding-bottom: clamp(36px, 4.5vh, 60px);
+}
+
+.subpage-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--black);
+  z-index: 0;
+}
+
+.subpage-hero-bg__ambient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 110% 85% at 50% 0%, rgba(16, 54, 125, 0.54) 0%, rgba(16, 54, 125, 0.28) 42%, rgba(8, 20, 50, 0.12) 68%, transparent 88%),
+    radial-gradient(ellipse 75% 65% at 85% 25%, rgba(116, 180, 217, 0.24) 0%, rgba(16, 54, 125, 0.26) 35%, transparent 75%),
+    radial-gradient(ellipse 65% 55% at 15% 15%, rgba(16, 54, 125, 0.22) 0%, transparent 60%);
+  animation: hero-room-breath 14s ease-in-out infinite alternate;
+}
+
+.subpage-hero-bg__beam {
+  position: absolute;
+  top: -15%;
+  height: 120%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  transform-origin: 50% 0%;
+  will-change: opacity, transform;
+}
+
+.subpage-hero-bg__beam--center {
+  left: 50%;
+  width: 58%;
+  transform: translateX(-50%) rotate(0deg);
+  background: radial-gradient(
+    ellipse 68% 92% at 50% 0%,
+    rgba(116, 180, 217, 0.46) 0%,
+    rgba(16, 54, 125, 0.38) 32%,
+    rgba(16, 54, 125, 0.18) 58%,
+    transparent 82%
+  );
+  animation: beam-sway-center 16s ease-in-out infinite alternate;
+}
+
+.subpage-hero-bg__beam--left {
+  left: -4%;
+  width: 48%;
+  transform: rotate(18deg);
+  background: radial-gradient(
+    ellipse 60% 88% at 50% 0%,
+    rgba(16, 54, 125, 0.44) 0%,
+    rgba(116, 180, 217, 0.22) 28%,
+    rgba(16, 54, 125, 0.14) 55%,
+    transparent 78%
+  );
+  animation: beam-sway-left 20s ease-in-out infinite alternate;
+}
+
+.subpage-hero-bg__beam--right {
+  right: -4%;
+  width: 52%;
+  transform: rotate(-16deg);
+  background: radial-gradient(
+    ellipse 62% 90% at 50% 0%,
+    rgba(116, 180, 217, 0.40) 0%,
+    rgba(16, 54, 125, 0.40) 32%,
+    rgba(16, 54, 125, 0.20) 60%,
+    transparent 82%
+  );
+  animation: beam-sway-right 18s ease-in-out infinite alternate;
+}
+
+.subpage-hero-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    transparent 35%,
+    rgba(0, 0, 0, 0.45) 75%,
+    var(--black) 100%
+  );
+}
+
+/* Dark Theme Section */
+.sec--dark,
+.theme-dark {
+  background-color: var(--black);
+  color: var(--off-white);
+}
+
+/* Light Theme Section (Clean Warm Cream) */
+.sec--light,
+.theme-light {
+  background-color: var(--cream);
+  color: var(--off-black);
+}
+
+/* Blue Accent Theme (Selective High-Impact Sections) */
+.sec--blue,
+.theme-blue {
+  background-color: var(--primary-blue);
+  color: var(--off-white);
+}
+
+/* Section Inner Container */
+.sec-inner,
+.section .container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.section-padded {
+  padding-top: calc(var(--nav-height) + 2rem);
+}
+
+/* ==========================================================
+   SECTION HEADER COMPONENT
+   ========================================================== */
+.section-header,
+.section-header-wrapper {
+  margin-bottom: clamp(20px, 2.5vh, 32px);
+  max-width: 1100px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.sec--dark .section-label,
+.theme-dark .section-label {
+  color: var(--muted-blue);
+}
+
+.sec--light .section-label,
+.theme-light .section-label {
+  color: #6C727D;
+}
+
+.section-label .num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sec--dark .section-label .num,
+.theme-dark .section-label .num {
+  color: var(--gold);
+}
+
+.sec--light .section-label .num,
+.theme-light .section-label .num {
+  color: var(--primary-blue);
+}
+
+.section-label .text {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.section-label .line {
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+}
+
+.sec--dark .section-label .line,
+.theme-dark .section-label .line {
+  background-color: rgba(255, 253, 248, 0.18);
+}
+
+.sec--light .section-label .line,
+.theme-light .section-label .line {
+  background-color: rgba(16, 54, 125, 0.22);
+}
+
+/* Section Title Typography */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 3.8vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.sec--dark .section-title,
+.theme-dark .section-title {
+  color: var(--off-white);
+}
+
+.sec--light .section-title,
+.theme-light .section-title {
+  color: var(--off-black);
+}
+
+.section-title em,
+.section-title .it {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.sec--dark .section-title em,
+.sec--dark .section-title .it,
+.theme-dark .section-title em,
+.theme-dark .section-title .it {
+  color: var(--gold);
+}
+
+.sec--light .section-title em,
+.sec--light .section-title .it,
+.theme-light .section-title em,
+.theme-light .section-title .it {
+  color: var(--primary-blue);
+}
+
+/* Section Subtitle Typography */
+.section-subtitle,
+.section-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.05vw, 16.5px);
+  line-height: 1.5;
+  font-weight: 350;
+  max-width: 640px;
+}
+
+.sec--dark .section-subtitle,
+.sec--dark .section-sub,
+.theme-dark .section-subtitle,
+.theme-dark .section-sub {
+  color: #C2BFB6;
+}
+
+.sec--light .section-subtitle,
+.sec--light .section-sub,
+.theme-light .section-subtitle,
+.theme-light .section-sub {
+  color: #4C4B47;
+}
+
+/* ==========================================================
+   RESPONSIVE SECTION PADDING & SCALING
+   ========================================================== */
+@media (max-width: 1024px) {
+  .sec,
+  .section {
+    padding: 56px 32px;
+    border-top-left-radius: 36px;
+    border-top-right-radius: 36px;
+  }
+  .sec.subpage-hero,
+  .subpage-hero,
+  .section-padded {
+    padding-top: calc(var(--nav-height) + 24px) !important;
+  }
+  .sec.services-overview {
+    border-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .sec.selected-work,
+  .sec.testimonials {
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+  }
+  .section-header,
+  .section-header-wrapper {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sec,
+  .section {
+    padding: 48px 20px;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+  }
+  .sec.subpage-hero,
+  .subpage-hero,
+  .section-padded {
+    padding-top: calc(var(--nav-height) + 24px) !important;
+  }
+  .sec.services-overview {
+    border-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .sec.selected-work,
+  .sec.testimonials {
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+  }
+  .section-label {
+    margin-bottom: 12px;
+  }
+  .section-title {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sec,
+  .section {
+    padding: 40px 16px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
+  .sec.subpage-hero,
+  .subpage-hero,
+  .section-padded {
+    padding-top: calc(var(--nav-height) + 24px) !important;
+  }
+  .sec.services-overview {
+    border-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .sec.selected-work,
+  .sec.testimonials {
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+  }
+}

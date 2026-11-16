@@ -1,0 +1,274 @@
+/* src/styles/hero.css */
+
+/* ==========================================================
+   AUREUS HERO SECTION
+   ========================================================== */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  background-color: var(--black);
+  color: var(--off-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--nav-height) + 16px) 48px 36px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   CINEMATIC AMBIENT LIGHTING & AUREUS GRADIENT BEAMS
+   ========================================================== */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: #030408;
+  z-index: 0;
+}
+
+/* Base room glow: breathing ambient space */
+.hero-bg__ambient {
+  position: absolute;
+  inset: 0;
+  background: 
+    /* Top center ambient glow */
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(16, 54, 125, 0.56) 0%, rgba(16, 54, 125, 0.3) 40%, rgba(8, 20, 50, 0.16) 65%, transparent 85%),
+    /* Rich right-side atmospheric volume */
+    radial-gradient(ellipse 70% 65% at 82% 35%, rgba(116, 180, 217, 0.28) 0%, rgba(16, 54, 125, 0.34) 35%, rgba(16, 54, 125, 0.16) 60%, transparent 80%),
+    /* Mid-right ambient fill */
+    radial-gradient(circle at 75% 65%, rgba(16, 54, 125, 0.22) 0%, transparent 55%),
+    /* Upper-left subtle bounce light */
+    radial-gradient(ellipse 65% 55% at 20% 15%, rgba(16, 54, 125, 0.26) 0%, transparent 60%);
+  animation: hero-room-breath 12s ease-in-out infinite alternate;
+}
+
+/* Spotlight Beams using Preferred Aureus Gradient (#10367D → #000000 → #74B4D9) */
+.hero-bg__beam {
+  position: absolute;
+  top: -10%;
+  width: 58%;
+  height: 105%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  transform-origin: 50% 0%;
+  will-change: opacity, transform, filter;
+}
+
+.hero-bg__beam--center {
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+  background: radial-gradient(
+    ellipse 68% 92% at 50% 0%,
+    rgba(116, 180, 217, 0.58) 0%,
+    rgba(16, 54, 125, 0.45) 32%,
+    rgba(16, 54, 125, 0.22) 58%,
+    rgba(0, 0, 0, 0) 82%
+  );
+  animation: beam-sway-center 16s ease-in-out infinite alternate;
+}
+
+.hero-bg__beam--left {
+  left: -4%;
+  transform: rotate(20deg);
+  width: 50%;
+  background: radial-gradient(
+    ellipse 60% 90% at 50% 0%,
+    rgba(16, 54, 125, 0.52) 0%,
+    rgba(116, 180, 217, 0.28) 28%,
+    rgba(16, 54, 125, 0.16) 55%,
+    transparent 78%
+  );
+  animation: beam-sway-left 20s ease-in-out infinite alternate;
+}
+
+.hero-bg__beam--right {
+  right: -2%;
+  transform: rotate(-18deg);
+  width: 55%;
+  background: radial-gradient(
+    ellipse 62% 92% at 50% 0%,
+    rgba(116, 180, 217, 0.48) 0%,
+    rgba(16, 54, 125, 0.48) 32%,
+    rgba(16, 54, 125, 0.24) 60%,
+    transparent 82%
+  );
+  animation: beam-sway-right 18s ease-in-out infinite alternate;
+}
+
+/* Floor Pool Reflection */
+.hero-bg__floor {
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  width: 78%;
+  height: 20%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 65% 55% at 50% 100%, rgba(16, 54, 125, 0.5) 0%, rgba(116, 180, 217, 0.24) 35%, transparent 80%);
+  mix-blend-mode: screen;
+  filter: blur(12px);
+}
+
+/* Vignette for razor-sharp typography contrast */
+.hero-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 4, 8, 0.1) 0%, transparent 35%, rgba(3, 4, 8, 0.48) 85%, #030408 100%);
+}
+
+/* Animations */
+@keyframes hero-room-breath {
+  0% { transform: scale(1.0); opacity: 0.85; }
+  100% { transform: scale(1.03); opacity: 1.0; }
+}
+
+@keyframes beam-sway-center {
+  0% { transform: translateX(-50%) rotate(-1.5deg); opacity: 0.7; }
+  100% { transform: translateX(-50%) rotate(1.5deg); opacity: 0.95; }
+}
+
+@keyframes beam-sway-left {
+  0% { transform: rotate(20deg); opacity: 0.6; }
+  100% { transform: rotate(26deg); opacity: 0.9; }
+}
+
+@keyframes beam-sway-right {
+  0% { transform: rotate(-26deg); opacity: 0.85; }
+  100% { transform: rotate(-20deg); opacity: 0.55; }
+}
+
+/* ==========================================================
+   HERO INNER COPY & EDITORIAL TYPOGRAPHY
+   ========================================================== */
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 0 28px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Eyebrow badge */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9AA4B2;
+  margin-bottom: 16px;
+}
+
+.hero-eyebrow .dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--light-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--light-blue);
+  animation: dot-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes dot-glow {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(116, 180, 217, 0.8); }
+  50% { opacity: 0.45; transform: scale(0.85); box-shadow: 0 0 4px rgba(116, 180, 217, 0.3); }
+}
+
+/* Editorial Hero Title */
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 5.6vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: var(--off-white);
+  margin-bottom: 18px;
+  max-width: 1200px;
+}
+
+.hero-title-line {
+  display: block;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* Hero Subtitle */
+.hero-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(14.5px, 1.1vw, 17.5px);
+  line-height: 1.55;
+  color: #C8C5BD;
+  max-width: 640px;
+  margin-bottom: 28px;
+  font-weight: 350;
+}
+
+.hero-sub-break {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .hero-sub-break {
+    display: inline;
+  }
+}
+
+/* Hero CTAs */
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================
+   HERO RESPONSIVE STYLING
+   ========================================================== */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 100px 36px 0;
+  }
+  .hero-inner {
+    padding: 30px 0 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 90px 24px 0;
+    min-height: auto;
+  }
+  .hero-inner {
+    padding: 24px 0 40px;
+  }
+  .hero-title {
+    margin-bottom: 24px;
+    line-height: 1.0;
+  }
+  .hero-sub {
+    margin-bottom: 32px;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 360px;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+  }
+}

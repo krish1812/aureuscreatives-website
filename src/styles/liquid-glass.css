@@ -1,0 +1,283 @@
+/* src/styles/liquid-glass.css */
+
+/* ==========================================================
+   AUREUS "LIQUID GLASS" INTERACTION LANGUAGE
+   Inspired by Apple's Liquid Glass: optical refraction,
+   soft translucent depth, thin luminous edges, and dynamic
+   specular highlights rooted in the Aureus color palette.
+   ========================================================== */
+
+:root {
+  /* Optical Glass Tokens */
+  --liquid-glass-blur: 24px;
+  --liquid-glass-saturate: 180%;
+  
+  /* Luminous Edges */
+  --liquid-glass-edge-dark: rgba(255, 253, 248, 0.12);
+  --liquid-glass-edge-light: rgba(16, 54, 125, 0.15);
+  --liquid-glass-chamfer-top: inset 0 1px 1px 0 rgba(255, 255, 255, 0.16);
+  --liquid-glass-chamfer-bottom: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25);
+  
+  /* Aureus Ambient Glass Sheen */
+  --liquid-glass-halo-blue: 0 0 24px -4px rgba(16, 54, 125, 0.25);
+  --liquid-glass-halo-light: 0 0 24px -4px rgba(116, 180, 217, 0.2);
+}
+
+/* ==========================================================
+   1. FLAGSHIP FLOATING NAVIGATION
+   ========================================================== */
+.liquid-glass-nav {
+  position: relative;
+  background: rgba(8, 9, 14, 0.74) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1px solid var(--liquid-glass-edge-dark) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(16, 54, 125, 0.2),
+    var(--liquid-glass-chamfer-top) !important;
+  transition: 
+    background-color 0.4s ease, 
+    border-color 0.35s ease, 
+    box-shadow 0.4s ease,
+    padding 0.3s ease !important;
+  overflow: hidden;
+}
+
+.nav.scrolled .liquid-glass-nav {
+  background: rgba(5, 6, 10, 0.86) !important;
+  border-color: rgba(255, 253, 248, 0.16) !important;
+  box-shadow: 
+    0 24px 54px -10px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(116, 180, 217, 0.25),
+    var(--liquid-glass-chamfer-top) !important;
+}
+
+/* Ambient optical gradient behind nav content */
+.liquid-glass-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.07) 0%, 
+    rgba(116, 180, 217, 0.03) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dynamic Specular Highlight (Liquid Pointer Response) */
+.liquid-glass-nav::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--glass-x, 50%) var(--glass-y, 50%),
+    rgba(116, 180, 217, 0.22) 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(16, 54, 125, 0.04) 50%,
+    transparent 75%
+  );
+  opacity: var(--glass-opacity, 0);
+  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 1;
+}
+
+/* Ensure child elements sit sharply on top of optical layers */
+.liquid-glass-nav > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================
+   2. RESTRAINED GLASS BUTTONS
+   ========================================================== */
+.liquid-glass-btn {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Primary Blue Button Glass Sheen */
+.btn-primary--blue.liquid-glass-btn,
+.btn--blue.liquid-glass-btn {
+  background: linear-gradient(135deg, #10367D 0%, #0D2D68 100%) !important;
+  border: 1px solid rgba(116, 180, 217, 0.4) !important;
+  box-shadow: 
+    0 8px 24px -4px rgba(16, 54, 125, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.32) !important;
+}
+
+.btn-primary--blue.liquid-glass-btn::before,
+.btn--blue.liquid-glass-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 15%,
+    rgba(255, 255, 255, 0.12) 42%,
+    rgba(116, 180, 217, 0.25) 50%,
+    rgba(255, 255, 255, 0.12) 58%,
+    transparent 85%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-primary--blue.liquid-glass-btn:hover::before,
+.btn--blue.liquid-glass-btn:hover::before {
+  transform: translateX(110%);
+}
+
+.btn-primary--blue.liquid-glass-btn:hover,
+.btn--blue.liquid-glass-btn:hover,
+.btn.liquid-glass-btn:hover {
+  border-color: rgba(116, 180, 217, 0.8) !important;
+  box-shadow: 
+    0 16px 36px -4px rgba(16, 54, 125, 0.55),
+    0 0 22px rgba(116, 180, 217, 0.4),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-2px) scale(1.12) !important;
+}
+
+/* Ghost Button Translucent Optical Glass */
+.btn-ghost.liquid-glass-btn {
+  background: rgba(255, 253, 248, 0.03) !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+  border: 1px solid rgba(255, 253, 248, 0.2) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-ghost.liquid-glass-btn:hover {
+  background: rgba(255, 253, 248, 0.08) !important;
+  border-color: rgba(255, 253, 248, 0.45) !important;
+  box-shadow: 
+    0 10px 24px -4px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Dynamic Specular on Buttons with pointer tracking */
+.liquid-glass-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    120px circle at var(--glass-x, 50%) var(--glass-y, 50%),
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 70%
+  );
+  opacity: var(--glass-opacity, 0);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.liquid-glass-btn > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================
+   3. INTERACTIVE CARDS LIQUID GLASS LAYER
+   ========================================================== */
+.liquid-glass-card {
+  position: relative;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 253, 248, 0.09) !important;
+  box-shadow: 
+    0 16px 36px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08) !important;
+  transition: 
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.4s ease !important;
+}
+
+/* Dynamic Specular Proximity on Cards */
+.liquid-glass-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--glass-x, 50%) var(--glass-y, 50%),
+    rgba(116, 180, 217, 0.11) 0%,
+    rgba(255, 255, 255, 0.04) 30%,
+    transparent 65%
+  );
+  opacity: var(--glass-opacity, 0);
+  transition: opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.liquid-glass-card:hover {
+  border-color: rgba(116, 180, 217, 0.32) !important;
+  box-shadow: 
+    0 24px 52px -12px rgba(0, 0, 0, 0.65),
+    0 0 24px rgba(16, 54, 125, 0.18),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+
+.liquid-glass-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================
+   4. ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass-nav::after,
+  .liquid-glass-btn::after,
+  .liquid-glass-card::after {
+    display: none !important;
+  }
+  
+  .btn-primary--blue.liquid-glass-btn::before,
+  .btn--blue.liquid-glass-btn::before {
+    display: none !important;
+  }
+  
+  .liquid-glass-nav,
+  .liquid-glass-btn,
+  .liquid-glass-card {
+    transition: none !important;
+  }
+}
+
+/* Touch devices: disable pointer tracking, preserve pristine optical surface */
+@media (hover: none) {
+  .liquid-glass-nav::after,
+  .liquid-glass-btn::after,
+  .liquid-glass-card::after {
+    display: none !important;
+  }
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+  .liquid-glass-nav {
+    background: rgba(10, 10, 15, 0.96) !important;
+  }
+  .liquid-glass-card {
+    background-color: #0E1018 !important;
+  }
+  .btn-ghost.liquid-glass-btn {
+    background-color: rgba(255, 253, 248, 0.08) !important;
+  }
+}

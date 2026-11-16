@@ -1,0 +1,171 @@
+/* src/styles/buttons.css */
+
+/* ==========================================================
+   BUTTON SYSTEM
+   ========================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 26px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-full);
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 0.28s cubic-bezier(0.2, 0.85, 0.25, 1),
+              background-color 0.28s ease,
+              color 0.28s ease,
+              border-color 0.28s ease,
+              box-shadow 0.28s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.btn .arrow {
+  display: inline-block;
+  transition: transform 0.28s cubic-bezier(0.2, 0.85, 0.25, 1);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.12);
+  z-index: 10;
+}
+
+.btn:active {
+  transform: translateY(0) scale(1.03);
+}
+
+/* ----------------------------------------------------------
+   DARK THEME BUTTON CONTEXTS
+   ---------------------------------------------------------- */
+.sec--dark .btn-primary,
+.theme-dark .btn-primary,
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: #FFFFFF;
+  border-color: rgba(116, 180, 217, 0.45);
+  box-shadow: 0 8px 24px -4px rgba(16, 54, 125, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.sec--dark .btn-primary:hover,
+.theme-dark .btn-primary:hover,
+.btn-primary:hover {
+  background-color: #1748A3;
+  border-color: rgba(116, 180, 217, 0.8);
+  box-shadow: 0 16px 36px -4px rgba(16, 54, 125, 0.55),
+              0 0 22px rgba(116, 180, 217, 0.4),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px) scale(1.12);
+}
+
+.sec--dark .btn-ghost,
+.theme-dark .btn-ghost,
+.btn-ghost {
+  background-color: transparent;
+  color: var(--off-white);
+  border: 1px solid rgba(255, 253, 248, 0.22);
+}
+
+.sec--dark .btn-ghost:hover,
+.theme-dark .btn-ghost:hover,
+.btn-ghost:hover {
+  background-color: rgba(16, 54, 125, 0.25);
+  border-color: rgba(116, 180, 217, 0.8);
+  box-shadow: 0 16px 36px -4px rgba(16, 54, 125, 0.5),
+              0 0 20px rgba(116, 180, 217, 0.35);
+}
+
+/* ----------------------------------------------------------
+   LIGHT THEME BUTTON CONTEXTS
+   ---------------------------------------------------------- */
+.sec--light .btn-primary,
+.theme-light .btn-primary {
+  background-color: var(--primary-blue);
+  color: #FFFFFF;
+  border-color: rgba(116, 180, 217, 0.45);
+  box-shadow: 0 8px 24px -4px rgba(16, 54, 125, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.sec--light .btn-primary:hover,
+.theme-light .btn-primary:hover {
+  background-color: #1748A3;
+  border-color: rgba(116, 180, 217, 0.8);
+  box-shadow: 0 16px 36px -4px rgba(16, 54, 125, 0.55),
+              0 0 22px rgba(116, 180, 217, 0.4),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px) scale(1.12);
+}
+
+.sec--light .btn-ghost,
+.theme-light .btn-ghost {
+  background-color: transparent;
+  color: var(--off-black);
+  border: 1px solid rgba(10, 10, 15, 0.2);
+}
+
+.sec--light .btn-ghost:hover,
+.theme-light .btn-ghost:hover {
+  background-color: rgba(16, 54, 125, 0.2);
+  border-color: rgba(116, 180, 217, 0.7);
+}
+
+/* ----------------------------------------------------------
+   AUREUS SPECIALIZED BRAND BUTTONS
+   ---------------------------------------------------------- */
+.btn-primary--blue,
+.btn--blue {
+  background-color: var(--primary-blue) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(116, 180, 217, 0.45) !important;
+  box-shadow: 0 8px 24px -4px rgba(16, 54, 125, 0.45),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.btn-primary--blue:hover,
+.btn--blue:hover {
+  background-color: #1748A3 !important;
+  border-color: rgba(116, 180, 217, 0.8) !important;
+  box-shadow: 0 16px 36px -4px rgba(16, 54, 125, 0.55),
+              0 0 22px rgba(116, 180, 217, 0.4),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-2px) scale(1.12) !important;
+  color: #FFFFFF !important;
+  z-index: 10;
+}
+
+.btn-primary--gold,
+.btn--gold {
+  background-color: var(--gold) !important;
+  color: var(--black) !important;
+  border: 1px solid rgba(255, 219, 152, 0.5) !important;
+  box-shadow: 0 8px 24px -4px rgba(255, 219, 152, 0.25) !important;
+}
+
+.btn-primary--gold:hover,
+.btn--gold:hover {
+  background-color: #FFE6B5 !important;
+  box-shadow: 0 12px 30px -4px rgba(255, 219, 152, 0.4) !important;
+}
+
+/* ----------------------------------------------------------
+   ACCESSIBILITY FOCUS STATE
+   ---------------------------------------------------------- */
+.btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}

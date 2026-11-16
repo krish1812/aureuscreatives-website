@@ -1,0 +1,29 @@
+/* src/styles/typography.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Typography helper classes */
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-anton,
+.font-stats {
+  font-family: var(--font-stats);
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.serif-it {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}

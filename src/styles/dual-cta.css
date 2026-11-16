@@ -1,0 +1,184 @@
+/* src/styles/dual-cta.css */
+
+/* ==========================================================
+   DUAL CTA SECTION (EDITORIAL SPLIT - LIGHT CREAM CANVAS)
+   ========================================================== */
+.dual-cta,
+.sec.dual-cta {
+  background-color: var(--cream);
+  color: var(--off-black);
+  padding-bottom: clamp(40px, 5vh, 64px);
+}
+
+.dual-cta__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.cta-card {
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  transition: transform 0.4s var(--ease-out-expo),
+              box-shadow 0.4s ease,
+              border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: var(--glass-opacity, 0);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cta-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Brands Card: Primary Blue Accents */
+.cta-card--brands {
+  background: radial-gradient(circle at 100% 0%, rgba(16, 54, 125, 0.3) 0%, #0C0E17 65%);
+  border: 1px solid rgba(16, 54, 125, 0.4);
+  box-shadow: 
+    0 20px 48px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+.cta-card--brands::after {
+  background: radial-gradient(
+    420px circle at var(--glass-x, 50%) var(--glass-y, 50%),
+    rgba(116, 180, 217, 0.14) 0%,
+    rgba(255, 255, 255, 0.04) 35%,
+    transparent 65%
+  );
+}
+
+.cta-card--brands:hover {
+  border-color: rgba(116, 180, 217, 0.5);
+  box-shadow: 
+    0 28px 64px -12px rgba(16, 54, 125, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Creators Card: Gold Accents */
+.cta-card--creators {
+  background: radial-gradient(circle at 100% 0%, rgba(255, 219, 152, 0.08) 0%, #0E0F16 65%);
+  border: 1px solid rgba(255, 219, 152, 0.2);
+  box-shadow: 
+    0 20px 48px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+.cta-card--creators::after {
+  background: radial-gradient(
+    420px circle at var(--glass-x, 50%) var(--glass-y, 50%),
+    rgba(255, 219, 152, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 35%,
+    transparent 65%
+  );
+}
+
+.cta-card--creators:hover {
+  border-color: rgba(255, 219, 152, 0.4);
+  box-shadow: 
+    0 28px 64px -12px rgba(255, 219, 152, 0.15),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cta-card__eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  margin-bottom: 14px;
+}
+
+.cta-card--brands .cta-card__eyebrow {
+  color: var(--light-blue);
+}
+
+.cta-card--creators .cta-card__eyebrow {
+  color: var(--gold);
+}
+
+.cta-card__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 2.3vw, 34px);
+  color: var(--off-white);
+  margin-bottom: 20px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.cta-card__points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cta-card__points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #C8C5BD;
+  font-weight: 350;
+}
+
+.cta-card__points .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot--blue {
+  background-color: var(--light-blue);
+  box-shadow: 0 0 8px var(--light-blue);
+}
+
+.dot--gold {
+  background-color: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.cta-card__button {
+  margin-top: auto;
+}
+
+.cta-card .btn {
+  transform-origin: center center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dual-cta__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cta-card {
+    padding: 44px 32px;
+  }
+}

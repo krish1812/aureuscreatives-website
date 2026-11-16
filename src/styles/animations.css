@@ -1,0 +1,71 @@
+/* src/styles/animations.css */
+
+/* Reveal Base State */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+/* Reveal Active State */
+.reveal.in:not(.dock-item) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.in.dock-item {
+  opacity: 1;
+}
+
+/* Staggered Delays */
+[data-d="1"] { transition-delay: 0.08s; }
+[data-d="2"] { transition-delay: 0.16s; }
+[data-d="3"] { transition-delay: 0.24s; }
+[data-d="4"] { transition-delay: 0.32s; }
+[data-d="5"] { transition-delay: 0.40s; }
+[data-d="6"] { transition-delay: 0.48s; }
+
+/* Marquee Animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Subtle Dot Glow / Pulse */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.95); }
+}
+
+/* Splash/Preloader Animation */
+@keyframes splash-fade-in {
+  from { filter: blur(10px); opacity: 0; }
+  to { filter: blur(0); opacity: 1; }
+}
+
+@keyframes splash-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

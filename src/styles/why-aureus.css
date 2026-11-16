@@ -1,0 +1,130 @@
+/* src/styles/why-aureus.css */
+
+/* ==========================================================
+   WHY AUREUS SECTION (LIGHT THEME)
+   ========================================================== */
+.why-aureus {
+  background-color: var(--cream);
+  color: var(--off-black);
+}
+
+.why-aureus__content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.why-aureus__left {
+  position: sticky;
+  top: calc(var(--nav-height) + 32px);
+}
+
+.why-aureus__framework-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 54, 125, 0.08);
+  border: 1px solid rgba(16, 54, 125, 0.15);
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-blue);
+  margin-bottom: 16px;
+}
+
+.why-aureus__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 2.8vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+.why-aureus__headline em {
+  font-style: italic;
+  color: var(--primary-blue);
+}
+
+.why-aureus__sub {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #55534E;
+  max-width: 440px;
+  font-weight: 350;
+}
+
+/* Right Column Points */
+.why-aureus__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.why-point {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(10, 10, 15, 0.1);
+  transition: padding-left 0.3s var(--ease-out-expo), border-color 0.3s ease;
+}
+
+.why-point:last-child {
+  border-bottom: 1px solid rgba(10, 10, 15, 0.1);
+}
+
+.why-point:hover {
+  border-top-color: var(--primary-blue);
+}
+
+.why-point__num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--primary-blue);
+  line-height: 1.2;
+}
+
+.why-point__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.why-point__title {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--black);
+}
+
+.why-point__desc {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #5A5852;
+  font-weight: 350;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .why-aureus__content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .why-aureus__left {
+    position: static;
+  }
+  .why-point {
+    padding: 14px 0;
+  }
+}

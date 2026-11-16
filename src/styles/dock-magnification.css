@@ -1,0 +1,204 @@
+/* src/styles/dock-magnification.css */
+
+/* ==========================================================
+   MACOS DOCK-STYLE CONTINUOUS WAVE MAGNIFICATION & PHYSICS
+   Hardware-accelerated via CSS custom properties (--dock-scale, --dock-lift)
+   driven dynamically by useDockWave requestAnimationFrame loop.
+   ========================================================== */
+
+/* Base Dock Item */
+.dock-item {
+  transform: translate3d(0, var(--dock-lift, 0px), 0) scale(var(--dock-scale, 1)) !important;
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* While actively tracking pointer within wave radius, keep transition near-zero for 120fps sync */
+.dock-item[style*="--dock-active: 1"],
+.dock-item[style*="--dock-active:1"] {
+  transition: transform 0.05s ease-out !important;
+  z-index: 25 !important;
+}
+
+/* ==========================================================
+   TACTILE SPRING PRESS (macOS Dock & iOS Haptic Feel)
+   Triggered on pointerdown/tap across all interactive elements
+   ========================================================== */
+.dock-pressed,
+.dock-item:active,
+.btn:active,
+.footer-social-icon:active,
+.service-card:active,
+.stat-card-wrap:active,
+.stat-card:active,
+.brand-item:active {
+  transform: translate3d(0, calc(var(--dock-lift, 0px) + 2px), 0) scale(calc(var(--dock-scale, 1) * 0.94)) !important;
+  transition: transform 0.08s cubic-bezier(0.2, 0.9, 0.3, 1) !important;
+}
+
+/* ==========================================================
+   NAVIGATION BAR DOCK MAGNIFICATION
+   ========================================================== */
+.nav-pill .dock-item {
+  transform-origin: center center;
+}
+
+.nav-link.dock-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link.cta.dock-item {
+  display: inline-flex;
+}
+
+/* Nav Logo Icon magnification */
+.nav-logo.dock-item {
+  display: inline-flex;
+  /* Proportional dock scaling: wide brand logo scales gracefully with the wave without overflowing capsule boundary or crowding the divider */
+  transform: translate3d(0, var(--dock-lift, 0px), 0) scale(calc(1 + (var(--dock-scale, 1) - 1) * 0.36)) !important;
+  transform-origin: center center;
+}
+
+/* ==========================================================
+   STATS SHOWCASE DOCK WAVE
+   ========================================================== */
+.stat-card-wrap.dock-item {
+  transform: translate3d(0, var(--dock-lift, 0px), 0) scale(var(--dock-scale, 1)) !important;
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.stat-card-wrap.dock-item[style*="--dock-active: 1"],
+.stat-card-wrap.dock-item[style*="--dock-active:1"] {
+  transition: transform 0.05s ease-out !important;
+  z-index: 20 !important;
+}
+
+.stat-card-wrap.dock-item[style*="--dock-active: 1"] .stat-card,
+.stat-card-wrap.dock-item[style*="--dock-active:1"] .stat-card {
+  box-shadow: 0 24px 50px -8px rgba(0, 0, 0, 0.65), 0 0 24px rgba(16, 54, 125, 0.25) !important;
+  border-color: rgba(116, 180, 217, 0.45) !important;
+}
+
+/* Micro-dock avatars inside case study cards */
+.work-card__avatar {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0.2s ease, box-shadow 0.25s ease;
+  transform-origin: center bottom;
+  cursor: pointer;
+}
+
+.work-card__avatar:hover {
+  transform: translateY(-4px) scale(1.35) !important;
+  z-index: 10;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.work-card__pill {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.25s ease;
+  transform-origin: top right;
+  cursor: default;
+}
+
+.work-card__pill:hover {
+  transform: scale(1.1) translateY(-1px);
+  background: rgba(16, 54, 125, 0.85);
+}
+
+.work-card-category-pill {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.25s ease;
+  transform-origin: center center;
+}
+
+.work-card-category-pill:hover {
+  transform: scale(1.08) translateY(-1px);
+}
+
+.service-card,
+.cta-card,
+.stat-card {
+  transform-origin: center center;
+}
+
+/* ==========================================================
+   FOOTER SOCIAL ICONS DOCK ROW
+   ========================================================== */
+.footer-social-icon.dock-item {
+  transform-origin: center center;
+}
+
+.footer-social-icon.dock-item[style*="--dock-active: 1"],
+.footer-social-icon.dock-item[style*="--dock-active:1"] {
+  background-color: var(--primary-blue);
+  border-color: rgba(116, 180, 217, 0.6);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(16, 54, 125, 0.45);
+}
+
+/* ==========================================================
+   STANDALONE BUTTONS & TAPPABLE TARGETS (GLOBAL DOCK HOVER)
+   ========================================================== */
+.btn {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.12) !important;
+  transition: transform 0.28s cubic-bezier(0.2, 0.85, 0.25, 1) !important;
+  z-index: 15 !important;
+}
+
+/* Brand Marquee items */
+.brand-item {
+  transition: transform 0.28s cubic-bezier(0.2, 0.85, 0.25, 1), filter 0.25s ease;
+  cursor: pointer;
+  transform-origin: center center;
+}
+
+.brand-item:hover {
+  transform: translateY(-2px) scale(1.12);
+  filter: brightness(1.15);
+}
+
+/* Why Aureus framework pill */
+.why-aureus__framework-pill {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  transform-origin: center center;
+  cursor: default;
+}
+
+.why-aureus__framework-pill:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 54, 125, 0.15);
+}
+
+/* Testimonial card avatars */
+.testimonial-card__avatar {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: center center;
+}
+
+.testimonial-card:hover .testimonial-card__avatar {
+  transform: scale(1.12);
+}
+
+/* ==========================================================
+   ACCESSIBILITY SAFEGUARD (PREFERS-REDUCED-MOTION ONLY)
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .dock-item,
+  .btn,
+  .brand-item,
+  .work-card,
+  .work-card__avatar,
+  .work-card__pill,
+  .footer-social-icon,
+  .why-aureus__framework-pill {
+    transition: none !important;
+  }
+}
